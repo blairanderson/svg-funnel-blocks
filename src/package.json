@@ -1,0 +1,11 @@
+{
+  "name": "funnel-blocks",
+  "version": "1.0.0",
+  "description": "Responsive DIV Funnel",
+  "keywords": [],
+  "main": "index.js",
+  "dependencies": {
+    "react": "16.8.1",
+    "react-dom": "16.8.1"
+  }
+}
