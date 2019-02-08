@@ -1,22 +1,16 @@
 import React from "react";
 import { render } from "react-dom";
-import Hello from "./Hello";
+import COLORS from "./COLORS";
 
 const styles = {
   fontFamily: "sans-serif",
   textAlign: "center"
 };
 
-const YELLOW = "rgb(255,229,0)";
-const LGREEN = "rgb(194,224,67)";
-const DGREEN = "rgb(0,191,176)";
-const LBLUE = "rgb(44,197,255)";
-const DBLUE = "rgb(0,102,188)";
-
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.colors = [YELLOW, LGREEN, DGREEN, LBLUE, DBLUE];
+
     this.state = {
       value: "",
       error: "",
@@ -112,9 +106,7 @@ class App extends React.Component {
     let active = this.state.hover === index || this.state.active === index;
     let showColors =
       active || (this.state.hover === null && this.state.active === null);
-    let color = showColors
-      ? this.colors[index % this.colors.length]
-      : "#bababa";
+    let color = showColors ? COLORS[index % COLORS.length] : "#bababa";
     let num = this.state.levels.length - index;
     let width = this.state.levelDiff * num + 150;
     let boWidth = width / 6;
