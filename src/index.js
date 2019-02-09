@@ -20,27 +20,26 @@ class App extends React.Component {
       active: null,
       edit: null,
       levels: [
-        "Top Of Funnel! <br> Search! SEO! AMS Ads! Main Image! Title!",
-        "Product Confidence! <br> InStock!? Content! Multiple Images!",
-        "Social Proof! <br> Reviews! Questions/Answers!",
-        "Checkout! <br> (Amazon Handles This!)"
+        {
+          header: "Top of Funnel!",
+          desc: "Search! SEO! AMS Ads! Main Image! Title!"
+        },
+        {
+          header: "Product Confidence!",
+          desc: "InStock!? Content! Multiple Images!"
+        },
+        { header: "Social Proof!", desc: "Reviews! Questions/Answers!" },
+        { header: "Checkout!", desc: "(Amazon Handles This!)" }
       ]
     };
     this.setScreenWidth = this.setScreenWidth.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
     this.onClick = this.onClick.bind(this);
-    this.onDoubleClick = this.onDoubleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderPanel = this.renderPanel.bind(this);
-  }
-
-  onDoubleClick(e, index) {
-    e.preventDefault();
-    const edit = this.state.edit === index ? null : index;
-    this.setState({ edit });
   }
 
   onMouseLeave(index) {
@@ -110,7 +109,7 @@ class App extends React.Component {
     let num = this.state.levels.length - index;
     let width = this.state.levelDiff * num + 150;
     let boWidth = width / 6;
-    let height = 75;
+    let height = 150;
     let divStyle = {
       borderRight: boWidth + "px solid transparent",
       borderTop: `${height}px solid ${color}`,
@@ -142,7 +141,6 @@ class App extends React.Component {
         onMouseEnter={e => {
           this.onMouseEnter(index);
         }}
-        onDoubleClick={e => this.onDoubleClick(e, index)}
         onMouseLeave={e => {
           this.onMouseLeave(index);
         }}
@@ -166,31 +164,6 @@ class App extends React.Component {
   render() {
     return (
       <div style={styles}>
-        <div className="pyramid-wrap">
-          <nav style={{ display: "block", textAlign: "Center" }}>
-            <div className="nav-item">
-              <form onSubmit={this.handleSubmit}>
-                <input
-                  type="text"
-                  className="nav-item-control"
-                  placeholder="Please enter the text content for next pyramid item ..."
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-                <input type="submit" value="Add new pyramid item" />
-              </form>
-            </div>
-            <div className="nav-item">
-              <button onClick={this.handleRemove}>
-                Remove last pyramid item
-              </button>
-            </div>
-            {this.state.error.length > 0 && (
-              <div style={{ color: "red" }}>{this.state.error}</div>
-            )}
-            <div>Click to HighLight</div>
-          </nav>
-        </div>
         <div id="pyramid-panel">{this.state.levels.map(this.renderPanel)}</div>
       </div>
     );
